@@ -21,3 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "prograMobile3erex"
 include(":app")
+include(":framework")
+include(":data")
+include(":domain")
+include(":usecases")
