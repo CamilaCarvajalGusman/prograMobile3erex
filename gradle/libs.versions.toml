@@ -1,5 +1,5 @@
 [versions]
-agp = "8.8.1"
+agp = "8.8.0"
 kotlin = "2.0.0"
 coreKtx = "1.16.0"
 junit = "4.13.2"
@@ -11,6 +11,22 @@ composeBom = "2024.04.01"
 appcompat = "1.7.0"
 material = "1.12.0"
 jetbrainsKotlinJvm = "2.0.0"
+
+navVersion = "2.8.3"
+hiltNavViewModel = "1.1.0"
+
+room = "2.6.1"
+
+kotlinxCoroutinesCore = "1.7.3"
+
+kotlinx-serialization = "1.7.3"
+
+ksp = "2.0.0-1.0.24"
+
+hilt = "2.55"
+
+runtimeLivedata = "1.6.0"
+storage = "1.5.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,6 +45,35 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+#navigation
+navigation = { group="androidx.navigation", name="navigation-compose", version.ref="navVersion"}
+hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref="hiltNavViewModel"}
+#room bundle
+room-runtime = {module="androidx.room:room-runtime", version.ref="room"}
+room-ktx = {module ="androidx.room:room-ktx", version.ref="room"}
+room-rxjava2 = { module="androidx.room:room-rxjava2", version.ref="room"}
+room-rxjava3 = { module="androidx.room:room-rxjava3", version.ref="room"}
+room-guava = {module="androidx.room:room-guava", version.ref="room"}
+room-paging = { module="androidx.room:room-paging", version.ref="room"}
+
+room-testing = { module="androidx.room:room-testing", version.ref="room"}
+
+room-compiler = { group="androidx.room", name="room-compiler", version.ref="room"}
+
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose" }
+
+hilt = { group = "com.google.dagger", name = "hilt-android", version.ref="hilt"}
+hilt-compiler = {group = "com.google.dagger", name = "hilt-compiler", version.ref="hilt"}
+hilt-test = { group = "com.google.dagger", name = "hilt-android-testing", version.ref="hilt"}
+
+androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata", version.ref = "runtimeLivedata" }
+
+leakcanary-android = "com.squareup.leakcanary:leakcanary-android:2.14"
+androidx-storage = { group = "androidx.test.services", name = "storage", version.ref = "storage" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -37,3 +82,13 @@ kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "ko
 android-library = { id = "com.android.library", version.ref = "agp" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 
+ksp = { id = "com.google.devtools.ksp", version.ref="ksp"}
+
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+
+kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin"}
+
+[bundles]
+room = [ "room-runtime", "room-ktx", "room-rxjava2","room-rxjava3", "room-guava", "room-paging"]
