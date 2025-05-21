@@ -31,6 +31,7 @@ runtimeLivedata = "1.6.0"
 storage = "1.5.0"
 cardview = "1.0.0"
 foundationLayoutAndroid = "1.7.2"
+navigationComposeJvmstubs = "2.9.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -82,6 +83,7 @@ leakcanary-android = "com.squareup.leakcanary:leakcanary-android:2.14"
 androidx-storage = { group = "androidx.test.services", name = "storage", version.ref = "storage" }
 androidx-cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
 androidx-foundation-layout-android = { group = "androidx.compose.foundation", name = "foundation-layout-android", version.ref = "foundationLayoutAndroid" }
+androidx-navigation-compose-jvmstubs = { group = "androidx.navigation", name = "navigation-compose-jvmstubs", version.ref = "navigationComposeJvmstubs" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

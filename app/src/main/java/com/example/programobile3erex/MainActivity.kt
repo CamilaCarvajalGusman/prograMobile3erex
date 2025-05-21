@@ -13,6 +13,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.programobile3erex.navigation.AppNavigation
+import com.example.programobile3erex.screens.MapUI
 import com.example.programobile3erex.ui.theme.PrograMobile3erexTheme
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
@@ -26,18 +28,11 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    MyGoogleMaps()
+                    AppNavigation()
                 }
             }
         }
     }
 }
 
-@Composable
-fun MyGoogleMaps(){
-    //val marker = LatLng(28.270833, -16.63916)
-    GoogleMap(modifier = Modifier.fillMaxSize()) {
-        //Marker(state = marker)
-    }
-}
 
