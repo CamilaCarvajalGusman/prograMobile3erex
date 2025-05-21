@@ -187,7 +187,7 @@ fun HomeUI(navController: NavController) {
             }
             Row(){
                 Button(
-                    onClick = { navController.navigate("mapa") },
+                    onClick = { navController.navigate("datos") },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Red,
                         contentColor = Color.White
@@ -210,8 +210,8 @@ fun HomeUI(navController: NavController) {
                 ) {
                     Image(
                         painter = painterResource(R.drawable.whatsapp),
-                        contentDescription = "Avanzar",
-                        modifier = Modifier.size(24.dp)
+                        contentDescription = "Whatsapp",
+                        modifier = Modifier.size(50.dp)
                     )
                 }
             }
