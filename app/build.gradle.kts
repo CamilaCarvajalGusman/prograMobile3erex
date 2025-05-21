@@ -60,6 +60,11 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.storage)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.cardview)
+    implementation(libs.androidx.foundation.layout.android)
+    implementation(libs.androidx.foundation.layout.android)
+    implementation(libs.androidx.foundation.layout.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -84,7 +89,9 @@ dependencies {
     kapt(libs.hilt.compiler)
     androidTestImplementation(libs.hilt.test)
     kaptAndroidTest(libs.hilt.compiler)
-
+    //maps
+    implementation(libs.maps.compose)
+    implementation(libs.play.services.maps)
     implementation(project(":usecases"))
     implementation(project(":domain"))
     implementation(project(":data"))
