@@ -1,5 +1,7 @@
 package com.example.programobile3erex.screens
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -9,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -28,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -39,6 +43,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.programobile3erex.R
 import kotlinx.coroutines.launch
+
+
 @Composable
 fun HomeUI(navController: NavController) {
     val listaPlanes = listOf("Plan Flex 5", "Plan Flex 8", "Plan FLEX 10")
@@ -47,7 +53,7 @@ fun HomeUI(navController: NavController) {
     val listaGigas=listOf("5GB","8GB","10GB")
     val pagerState = rememberPagerState(pageCount = { listaPlanes.size })
     val coroutineScope = rememberCoroutineScope()
-
+    val context = LocalContext.current
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -179,16 +185,35 @@ fun HomeUI(navController: NavController) {
                     Icon(imageVector = Icons.AutoMirrored.Filled.ArrowForward, contentDescription = "Avanzar")
                 }
             }
-            Button(
-                onClick = { navController.navigate("mapa") },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Red,
-                    contentColor = Color.White
-                ),
-                shape = RoundedCornerShape(12.dp),
-                modifier = Modifier.padding(top = 16.dp)
-            ) {
-                Text("Quiero este plan")
+            Row(){
+                Button(
+                    onClick = { navController.navigate("mapa") },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Red,
+                        contentColor = Color.White
+                    ),
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier.padding(top = 16.dp)
+                ) {
+                    Text("Quiero este plan")
+                }
+                Button(
+                    onClick = {
+                        val intent = Intent(Intent.ACTION_VIEW)
+                        //mensaje a mi teléfono:
+                        val url = "https://api.whatsapp.com/send?phone=+59177927405&text=" + Uri.encode("Hola, UCB mobile, preciso su ayuda")
+                        intent.data = Uri.parse(url)
+                        context.startActivity(intent)
+
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent) // Fondo transparente
+                ) {
+                    Image(
+                        painter = painterResource(R.drawable.whatsapp),
+                        contentDescription = "Avanzar",
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
             }
         }
     }
