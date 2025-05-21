@@ -1,5 +1,10 @@
 package com.example.programobile3erex.screens
 
+import android.app.Activity
+import android.content.pm.PackageManager
+import android.telephony.SmsManager
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,12 +31,31 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
+import android.Manifest
+import android.content.Context
+import androidx.compose.ui.platform.LocalContext
+
 @Composable
-fun DatosUI(navController: NavController) {
-    var telefono by remember { mutableStateOf("") }
+fun DatosUI(navController: NavController, page: String) {
+    var telefono by remember { mutableStateOf("+591") }
     var latitud by remember { mutableStateOf("") }
     var longitud by remember { mutableStateOf("") }
+    val listaPlanes = listOf("Plan Flex 5", "Plan Flex 8", "Plan FLEX 10")
+    val context = LocalContext.current
+    val pageEntero=page.toIntOrNull()?:0
+    val requestPermissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission(),
+        onResult = { isGranted ->
+            if (isGranted) {
+                enviarSMS(context, telefono, "Mensaje de prueba desde la app")
+            } else {
+                println("Permiso denegado")
+            }
+        }
+    )
+
 
     Box(
         modifier = Modifier
@@ -53,6 +77,13 @@ fun DatosUI(navController: NavController) {
                 fontSize = 35.sp
             )
             Text(
+                text = "Para el plan: ${listaPlanes[pageEntero]}",
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            )
+
+            Text(
                 text = "Para enviarle un SIM",
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
@@ -65,7 +96,10 @@ fun DatosUI(navController: NavController) {
 
             OutlinedTextField(
                 value = telefono,
-                onValueChange = { telefono = it },
+                onValueChange = {
+                    if (it.startsWith("+591")) {
+                    telefono = it
+                } },
 
                 label = { Text("Teléfono celular") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone)
@@ -93,7 +127,15 @@ fun DatosUI(navController: NavController) {
 
             Button(
                 onClick = {
-                    navController.navigate("mapa")
+                   // navController.navigate("mapa")
+                    if (ContextCompat.checkSelfPermission(context, Manifest.permission.SEND_SMS)
+                        == PackageManager.PERMISSION_GRANTED
+                    ) {
+                        enviarSMS(context, telefono, "Mensaje de prueba desde la app")
+                    } else {
+                        requestPermissionLauncher.launch(Manifest.permission.SEND_SMS)
+                    }
+
                 }
             ) {
                 Text("Continuar")
@@ -101,3 +143,12 @@ fun DatosUI(navController: NavController) {
         }
     }
 }
+fun enviarSMS(context: Context, numero: String, mensaje: String) {
+    try {
+        val smsManager = SmsManager.getDefault()
+        smsManager.sendTextMessage(numero, null, mensaje, null, null)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+}
+

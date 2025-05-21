@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -82,9 +83,14 @@ fun HomeUI(navController: NavController) {
             )
             HorizontalPager(state = pagerState) { page ->
                 Column(
-                    modifier = Modifier.padding(16.dp),
+                    modifier = Modifier.border(
+                        width = 2.dp, // Grosor del borde
+                        color = Color.Gray, // Color del borde
+                        shape = RoundedCornerShape(8.dp) // Bordes redondeados
+                    ).padding(16.dp),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
+
                 ) {
                     Text(
                         text = listaPlanes[page],
@@ -187,7 +193,8 @@ fun HomeUI(navController: NavController) {
             }
             Row(){
                 Button(
-                    onClick = { navController.navigate("datos") },
+                    onClick = {navController.navigate("datos/${pagerState.currentPage}")
+                    },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Red,
                         contentColor = Color.White

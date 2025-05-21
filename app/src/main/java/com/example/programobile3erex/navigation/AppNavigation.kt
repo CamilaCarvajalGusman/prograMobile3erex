@@ -19,9 +19,11 @@ fun AppNavigation(){
         composable(Screens.HomeUI.route)    {
             HomeUI(navController)
         }
-        composable(Screens.DatosUI.route)    {
-            DatosUI(navController)
+        composable(Screens.DatosUI.route + "/{page}") { backStackEntry ->
+            val page = backStackEntry.arguments?.getString("page") ?: "Sin datos"
+            DatosUI(navController, page)
         }
+
         composable(Screens.MapUI.route)    {
             MapUI(navController)
         }
