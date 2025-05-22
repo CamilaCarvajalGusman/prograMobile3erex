@@ -14,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.programobile3erex.navigation.AppNavigation
-import com.example.programobile3erex.screens.MapUI
 import com.example.programobile3erex.ui.theme.PrograMobile3erexTheme
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
