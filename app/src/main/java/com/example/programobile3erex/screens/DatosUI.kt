@@ -55,7 +55,7 @@ fun DatosUI(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Gray)
+            .background(Color.Black)
             .padding(10.dp)
     ) {
         LazyColumn(
@@ -79,7 +79,7 @@ fun DatosUI(
                     text = "Para el ${listaPlanes[pageEntero]}",
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black,
+                    color = Color.White,
                     fontSize = 25.sp
                 )
             }
@@ -87,7 +87,7 @@ fun DatosUI(
                 OutlinedTextField(
                     value = sharedViewModel.phone.value,
                     onValueChange = { sharedViewModel.actualizarTelefono(it) },
-                    label = { Text("Teléfono celular", color=Color.Black) },
+                    label = { Text("Teléfono celular") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                     modifier = Modifier.fillMaxSize()
                 )
@@ -96,7 +96,7 @@ fun DatosUI(
                 OutlinedTextField(
                     value = sharedViewModel.latitud.value?.toString() ?: "",
                     onValueChange = { },
-                    label = { Text("Latitud", color=Color.Black) },
+                    label = { Text("Latitud") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     enabled = false,
                     modifier = Modifier.fillMaxSize()
@@ -106,7 +106,7 @@ fun DatosUI(
                 OutlinedTextField(
                     value = sharedViewModel.longitud.value?.toString() ?: "",
                     onValueChange = { },
-                    label = { Text("Longitud", color=Color.Black) },
+                    label = { Text("Longitud") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     enabled = false,
                     modifier = Modifier.fillMaxSize()
