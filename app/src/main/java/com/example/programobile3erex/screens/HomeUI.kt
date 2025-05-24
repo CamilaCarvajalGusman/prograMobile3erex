@@ -91,8 +91,7 @@ fun HomeUI(navController: NavController) {
         item {
             HorizontalPager(state = pagerState) { page ->
                 Box(
-                    modifier = Modifier.background(Color.White).padding(10.dp),
-                    contentAlignment = Alignment.Center
+                    modifier = Modifier.background(Color.White).padding(10.dp)
                 ) {
                     Column(
                         modifier = Modifier
@@ -153,7 +152,7 @@ fun HomeUI(navController: NavController) {
                                 text = feature,
                                 style = MaterialTheme.typography.headlineMedium,
                                 color = Color.Black,
-                                textAlign = TextAlign.Center,
+                                textAlign = TextAlign.Start,
                                 fontSize = 15.sp
                             )
                         }

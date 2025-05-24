@@ -35,10 +35,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.programobile3erex.viewmodels.MapViewModel
+import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
+import com.google.maps.android.compose.rememberCameraPositionState
 
 @Composable
 fun DatosUI(
@@ -137,6 +139,9 @@ fun DatosUI(
                     ) {
                         GoogleMap(
                             modifier = Modifier.fillMaxSize(),
+                            cameraPositionState = rememberCameraPositionState {
+                                position = CameraPosition.fromLatLngZoom(LatLng(-17.3935, -66.1570), 12f)
+                            },
                             onMapClick = { latLng ->
                                 sharedViewModel.actualizarUbicacion(latLng.latitude, latLng.longitude)
                             }
